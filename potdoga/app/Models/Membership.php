@@ -9,10 +9,10 @@ class Membership extends Model
 {
     use HasFactory;
 
-    //protected  $primaryKey = 'member_id';
+    protected  $primaryKey = 'member_id';
 
     protected $fillable = [
-        'club_id ',
-        'user_id '        
+        'club_id',
+        'user_id'        
     ];
 }

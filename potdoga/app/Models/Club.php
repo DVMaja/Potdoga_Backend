@@ -13,8 +13,8 @@ class Club extends Model
     protected  $primaryKey = 'club_id';
 
     protected $fillable = [
-        'establishment ',
-        'location ',
-        'max_number '
+        'establishment',
+        'location',
+        'max_number'
     ];
 }
