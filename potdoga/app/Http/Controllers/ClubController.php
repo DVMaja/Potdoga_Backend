@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ClubController extends Controller
 {
-    
+
     public function index()
     {
         $clubs = response()->json(Club::all());
@@ -17,15 +17,15 @@ class ClubController extends Controller
     }
 
     public function show($id)
-    {        
+    {
         $clubs = response()->json(Club::find($id));
         return $clubs;
     }
 
     public function destroy($id)
-    {        
-        Club::find($id)->delete;
-        //return redirect('/club/list');
+    {
+        Club::find($id)->delete();
+        return redirect('/club/list');
     }
 
     public function store(Request $request)
@@ -33,9 +33,9 @@ class ClubController extends Controller
         $club = new Club();
         $club->establishment = $request->establishment;
         $club->location = $request->location;
-        $club->max_number = $request->max_number;    
+        $club->max_number = $request->max_number;
         $club->save();
-        //return redirect('/club/list');
+        return redirect('/club/list');
     }
 
     public function update(Request $request, $id)
@@ -43,23 +43,22 @@ class ClubController extends Controller
         $club = Club::find($id);
         $club->establishment = $request->establishment;
         $club->location = $request->location;
-        $club->max_number = $request->max_number;        
-        $club->save();        
-        //return redirect('/club/list');
+        $club->max_number = $request->max_number;
+        $club->save();
+        return redirect('/club/list');
     }
 
-    //view fileok
-   
     public function newView()
     {
-        $users = User::all();
-        return view('club.new', ['users' => $users]);
+        //$users = User::all();
+        return view('club.new'/*, ['users' => $users] */);
     }
 
-    public function editView($id){
-        $users  = User::all();
+    public function editView($id)
+    {
+        //$users  = User::all();
         $club = Club::find($id);
-        return view('club.edit', ['users' => $users, 'club' => $club]);
+        return view('club.edit', ['club' => $club]);
     }
     public function listview()
     {
@@ -67,5 +66,9 @@ class ClubController extends Controller
         return view('club.list', ['clubs' => $clubs]);
     }
 
-    
+    public function deleteView()
+    {
+        $club = Club::all();
+        return view("club.delete", ["clubs" => $club]);
+    }
 }
