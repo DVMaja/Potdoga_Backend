@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClubController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,17 +20,11 @@ Route::get('/', function () {
 
 Route::get('/api/clubs', [ClubController::class, 'index']);
 Route::get('/api/clubs/{id}', [ClubController::class, 'show']);
-
 Route::post('/api/clubs', [ClubController::class, 'store']);
+Route::put('/api/clubs/{id}', [ClubController::class, 'update']);
+Route::put('/api/clubs/{id}', [ClubController::class, 'destroy']);
 
-Route::get('/api/users', [UserController::class,'index']);
 
-//ciew útvonalak következnek
-Route::get('/task/list', [ClubController::class, 'listView']);
-
-Route::get('/task/new', [ClubController::class, 'newView']);
-Route::get('/task/edit/{id}', [ClubController::class, 'editView']);
-
-Route::get('/api/users/', [UserController::class, 'index']);
-Route::get('/api/users/{{$user->id}}', [UserController::class, 'show']);
-Route::get('/user/list', [UserController::class, 'listView']);
+Route::get('/club/list', [ClubController::class, 'listView']);
+Route::get('/club/new', [ClubController::class, 'newView']);
+Route::get('/club/edit/{id}', [ClubController::class, 'editView']);

@@ -18,14 +18,14 @@ class ClubController extends Controller
 
     public function show($id)
     {        
-        $club = response()->json(Club::find($id));
-        return $club;
+        $clubs = response()->json(Club::find($id));
+        return $clubs;
     }
 
     public function destroy($id)
     {        
         Club::find($id)->delete;
-        return redirect('/club/list');
+        //return redirect('/club/list');
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class ClubController extends Controller
         $club->location = $request->location;
         $club->max_number = $request->max_number;    
         $club->save();
-        return redirect('/club/list');
+        //return redirect('/club/list');
     }
 
     public function update(Request $request, $id)
@@ -44,18 +44,12 @@ class ClubController extends Controller
         $club->establishment = $request->establishment;
         $club->location = $request->location;
         $club->max_number = $request->max_number;        
-        $club->save();
-        //azért kell ez hogy lássuk az eredményét
-        return redirect('/club/list');
+        $club->save();        
+        //return redirect('/club/list');
     }
 
     //view fileok
-    public function listview()
-    {
-        $clubs = Club::all();
-        return view('club.list', ['clubs' => $clubs]);
-    }
-
+   
     public function newView()
     {
         $users = User::all();
@@ -67,5 +61,11 @@ class ClubController extends Controller
         $club = Club::find($id);
         return view('club.edit', ['users' => $users, 'club' => $club]);
     }
+    public function listview()
+    {
+        $clubs = Club::all();
+        return view('club.list', ['clubs' => $clubs]);
+    }
+
     
 }
